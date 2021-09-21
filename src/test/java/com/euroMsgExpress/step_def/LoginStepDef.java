@@ -33,6 +33,7 @@ public class LoginStepDef {
 
     @When("the user logged {string} and {string}")
     public void the_user_logged_and(String username, String password) {
+
         loginPage.login(username, password);
     }
 
@@ -41,7 +42,7 @@ public class LoginStepDef {
         loginPage.notMatchWarning.isDisplayed();
     }
 
-    @When("the user logged in as {string} and {string}")
+    @When("the user can not logged in as {string} and {string} and display warning")
     public void the_user_logged_in_as_and(String username, String password) {
         loginPage.login(username, password);
         if (username.length() == 0) {
