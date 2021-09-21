@@ -2,7 +2,6 @@ package com.euroMsgExpress.pages;
 
 import com.euroMsgExpress.utilities.BrowserUtils;
 import com.euroMsgExpress.utilities.Driver;
-import jdk.jfr.events.ExceptionThrownEvent;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,14 +20,18 @@ public class LoginPage extends BasePage {
     public WebElement loginButton;
     @FindBy(css = ".text-danger")
     public WebElement notMatchWarning;
+    @FindBy(xpath = "(//div[@class='input-warning'])[1]")
+    public WebElement inputWarningUser;
+    @FindBy(xpath = "(//div[@class='input-warning'])[2]")
+    public WebElement inputWarningPassword;
     @FindBy(css = ".input-warning")
-    public WebElement inputWarning;
+    public WebElement inavlidUserWarning;
 
 
     public void login(String userNameStr, String passwordStr) {
         userName.sendKeys(userNameStr);
         password.sendKeys(passwordStr);
-            BrowserUtils.waitFor(30);
+            BrowserUtils.waitFor(30);//Normalde implicitly wait kullanmıyorum ancan reCaptchanın nasıl tepki vereceği belli olmuyor bu sebeple kullanmak zorunda kaldım
             loginButton.click();
     }
 

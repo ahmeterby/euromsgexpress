@@ -1,4 +1,4 @@
-@task
+@Task
 Feature:Customer should be able to log in
 
   Background:
@@ -19,7 +19,7 @@ Feature:Customer should be able to log in
   Scenario:Login with invalid credentials valid username invalid password
     When the user logged in "erbay.1012@gmail.com" and "12345678"
     Then the user should be able to see Username and password did not match
-
+#Cucumber BDD'de(Gherkin) Data Driven'ı bu şekilde kullandım.
   Scenario Outline: Login with empty username or password
     When the user can not logged in as "<username>" and "<password>" and display warning
     Examples:
@@ -27,3 +27,4 @@ Feature:Customer should be able to log in
       | user1@gmail.com |          |
       |                 | User123  |
       |                 |          |
+      | user@gmail.     |          |

@@ -1,4 +1,4 @@
-
+@Task
 Feature:User should be able to add new candidate
 
   Scenario:user should be able to add new uye

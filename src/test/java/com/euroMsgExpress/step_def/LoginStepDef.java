@@ -6,7 +6,6 @@ import com.euroMsgExpress.utilities.BrowserUtils;
 import com.euroMsgExpress.utilities.ConfigurationReader;
 import com.euroMsgExpress.utilities.Driver;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
@@ -44,11 +43,23 @@ public class LoginStepDef {
 
     @When("the user can not logged in as {string} and {string} and display warning")
     public void the_user_logged_in_as_and(String username, String password) {
-        loginPage.login(username, password);
+
         if (username.length() == 0) {
-            loginPage.inputWarning.isDisplayed();
-        }else {
-            loginPage.notMatchWarning.isDisplayed();
+            loginPage.password.sendKeys(password);
+            loginPage.loginButton.click();
+            loginPage.inputWarningUser.isDisplayed();
+        }else if (password.length()==0){
+            loginPage.userName.sendKeys(username);
+            loginPage.loginButton.click();
+            loginPage.inputWarningPassword.isDisplayed();
+        }else if (!username.contains("@gmail.co")){
+            loginPage.userName.sendKeys(username);
+            loginPage.password.click();
+            loginPage.inavlidUserWarning.isDisplayed();
+        } else {
+             loginPage.loginButton.click();
+             loginPage.inputWarningPassword.isDisplayed();
+             loginPage.inputWarningUser.isDisplayed();
         }
 
     }
